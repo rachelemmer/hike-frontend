@@ -25,6 +25,7 @@ export default class LogIn extends Component {
         })
         .then(response => response.json())
         .then(result => {
+            console.log(result)
             localStorage.setItem("token", result.token)
             result.token ? alert("You have successfully logged in!") : alert("Wrong username or password!")
         })
