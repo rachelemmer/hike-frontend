@@ -49,25 +49,27 @@ export default class LogIn extends Component {
     render() {
         return (
             <div className="login-container">
-            <p className="login-question">Already a user? Log In!</p>
-                <form className="login-form" onSubmit={this.logIn}>
-                    <input 
-                        value={this.state.username} 
-                        name="username"
-                        type="text" 
-                        placeholder="username" 
-                        onChange={this.updateInput}
-                    />
-                    <input 
-                        value={this.state.password} 
-                        name="password" 
-                        type="password" 
-                        placeholder="password"
-                        onChange={this.updateInput}
-                    />
-                    <button type="submit">Log In</button>
-                </form>
-                <button className="logout-button" onClick={this.logOut}>Log Out</button>
+                <div className="login-form-container">
+                    <p className="login-question">Already a user? Log In!</p>
+                    <form className="login-form" onSubmit={this.logIn}>
+                        <input 
+                            value={this.state.username} 
+                            name="username"
+                            type="text" 
+                            placeholder="username" 
+                            onChange={this.updateInput}
+                        />
+                        <input 
+                            value={this.state.password} 
+                            name="password" 
+                            type="password" 
+                            placeholder="password"
+                            onChange={this.updateInput}
+                        />
+                        <button type="submit">Log In</button>
+                    </form>
+                    <button className="logout-button" onClick={this.logOut}>Log Out</button>
+                </div>
             </div>
         )
     }

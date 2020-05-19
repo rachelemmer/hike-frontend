@@ -7,6 +7,7 @@ export default function Nav() {
             <Link to="/" className="link">Home</Link>
             <Link to='Signup' className="link">Sign Up</Link>
             <Link to='Login' className="link">Log In</Link>
+            <Link to='Dashboard' className="link">Dashboard</Link>
             <Link to='ViewAllHikes' className="link">View all Hikes</Link>
         </nav>
     )

@@ -37,24 +37,26 @@ export default class SignUp extends Component {
     render() {
         return (
             <div className="signup-container">
-                <p className="signup-question">Not a user? Sign Up!</p>
-                <form className="signup-form" onSubmit={this.signUp}>
-                    <input 
-                        value={this.state.username} 
-                        name="username" 
-                        type="text" 
-                        placeholder="username"
-                        onChange={this.updateInput}
-                    />
-                    <input 
-                        value={this.state.password} 
-                        name="password" 
-                        type="password" 
-                        placeholder="password"
-                        onChange={this.updateInput}
-                    />
-                    <button type="submit">Sign Up</button>
-                </form>
+                <div className="signup-form-container">
+                    <p className="signup-question">Not a user? Sign Up!</p>
+                    <form className="signup-form" onSubmit={this.signUp}>
+                        <input 
+                            value={this.state.username} 
+                            name="username" 
+                            type="text" 
+                            placeholder="username"
+                            onChange={this.updateInput}
+                        />
+                        <input 
+                            value={this.state.password} 
+                            name="password" 
+                            type="password" 
+                            placeholder="password"
+                            onChange={this.updateInput}
+                        />
+                        <button type="submit">Sign Up</button>
+                    </form>
+                </div>
             </div>
         )
     }
