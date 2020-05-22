@@ -22,10 +22,24 @@
   display:flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  align-content: space-around;
 }
 
 .title {
-  font-size: 120px;
+  font-size: 250px;
+  padding: 10px;
+  border: none;
+  margin: 0px;
+  color: #222121;
+}
+
+.click-to-start {
+  font-size: 30px;
+  text-decoration: none;
+  margin: 0px;
+  color: white;
+  text-shadow: 1px 1px 1px #222121;
 }
 
 /* navigation */

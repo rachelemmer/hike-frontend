@@ -22,11 +22,14 @@ export default class Modal extends Component {
     handleClose = () => {
         this.setState({open: false})
         const {title, image, description, mountain_id} = this.state
+        const user_id = localStorage.getItem("user_id")
+        const mountain_id_int = parseInt(mountain_id)
+        console.log(user_id)
         
         fetch("http://localhost:4000/hike", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({title, image, description, mountain_id})
+            body: JSON.stringify({title, image, description, mountain_id: mountain_id_int, user_id})
         })
         .then(response => response.json())
     }
@@ -49,7 +52,7 @@ export default class Modal extends Component {
                     <DialogTitle id="form-dialog-title">Add your hike!</DialogTitle>
                     <DialogContent>
                         <form className="add-hike-form">
-                            <select className="select-box">
+                            <select name="mountain_id" onChange={this.updateInput} className="select-box">
                             <option className="option" disabled selected hidden>Select Fourteener</option>
                             {this.props.mountains.map(mountain => {
                                 return <option className="option" key={mountain.id} value={mountain.id}>{mountain.name}</option>
