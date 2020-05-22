@@ -7,6 +7,11 @@ export default class LogIn extends Component {
         password: '',
     }
 
+    componentDidMount(){
+        localStorage.clear()
+        this.props.setIsLoggedIn(false)
+    }
+
     updateInput = event => {
         const {name, value} = event.target
         this.setState({
@@ -27,11 +32,10 @@ export default class LogIn extends Component {
         .then(result => {
             console.log(result)
             localStorage.setItem("token", result.token)
+            this.props.setIsLoggedIn(true)
             result.token ? alert("You have successfully logged in!") : alert("Wrong username or password!")
         })
-        // .then( () => {
-        //     this.props.getBooks()
-        // })   
+        .then(() => this.props.history.push("Dashboard"))   
             
         this.setState({
             username: '',
@@ -39,12 +43,6 @@ export default class LogIn extends Component {
         })
         
     }
-
-    logOut = event => {
-        localStorage.clear()
-        alert("You have successfully logged out!")
-    }
-
 
     render() {
         return (
@@ -68,7 +66,6 @@ export default class LogIn extends Component {
                         />
                         <button type="submit">Log In</button>
                     </form>
-                    <button className="logout-button" onClick={this.logOut}>Log Out</button>
                 </div>
             </div>
         )

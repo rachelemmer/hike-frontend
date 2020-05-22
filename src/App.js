@@ -5,11 +5,18 @@ import Home from "./Home"
 import Nav from "./Nav"
 import Login from "./Login"
 import Dashboard from "./Dashboard"
-import ViewAllHikes from "./ViewAllHikes"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 
 export default class App extends Component {
+
+  state = {
+    isLoggedIn: false
+  }
+
+  setIsLoggedIn = (value) => {
+    this.setState({isLoggedIn: value})
+  }
 
   
   render(){
@@ -33,19 +40,13 @@ export default class App extends Component {
             <Route 
               path='/login'
               render={(props) =>
-                <Login/>
+                <Login setIsLoggedIn={this.setIsLoggedIn} {...props}/>
               }
             />
             <Route 
               path='/dashboard'
               render={(props) =>
                 <Dashboard/>
-              }
-            />
-            <Route 
-              path='/viewallhikes'
-              render={(props) =>
-                <ViewAllHikes/>
               }
             />
           </Switch>

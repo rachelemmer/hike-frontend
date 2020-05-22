@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import Modal from "./Modal"
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 
 export default class Dashboard extends Component {
 
     state = {
         mountains: [],
-        activeMountain: null
+        activeMountain: null,
     }
 
     componentDidMount() {
@@ -16,9 +17,10 @@ export default class Dashboard extends Component {
 
     render() {
         return (
-            <div>
-                <div className="dashboard-map-container">
-                <Map className="dashboard-map" center={[39, -106]} zoom={8}>
+            <div className="dashboard-page">
+                <Modal mountains={this.state.mountains}/>
+                <div>
+                <Map id="dashboard-map" center={[39, -106]} zoom={8}>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -39,14 +41,8 @@ export default class Dashboard extends Component {
                     </Popup>
                     )}
                     )}
-                </Map>
-                </div>
-                <div className="total">
-
-                </div>
-                <div className="miles">
-
-                </div>
+                </Map> 
+                </div>    
             </div>
         )
     }
