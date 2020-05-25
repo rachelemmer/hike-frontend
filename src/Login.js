@@ -34,9 +34,13 @@ export default class LogIn extends Component {
             localStorage.setItem("token", result.token)
             localStorage.setItem("user_id", result.foundUser.id)
             this.props.setIsLoggedIn(true)
-            result.token ? alert("You have successfully logged in!") : alert("Wrong username or password!")
+            if (result.token) {
+                this.props.history.push("Dashboard")
+            }
+            else {
+                alert("Wrong username or password! Please try again.")
+            }
         })
-        .then(() => this.props.history.push("Dashboard"))   
             
         this.setState({
             username: '',
@@ -49,7 +53,7 @@ export default class LogIn extends Component {
         return (
             <div className="login-container">
                 <div className="login-form-container">
-                    <p className="login-question">Already a user? Log In!</p>
+                    <h1 className="login-title">Log in and let's Hike</h1>
                     <form className="login-form" onSubmit={this.logIn}>
                         <input 
                             value={this.state.username} 

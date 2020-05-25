@@ -38,7 +38,7 @@ export default class SignUp extends Component {
         return (
             <div className="signup-container">
                 <div className="signup-form-container">
-                    <p className="signup-question">Not a user? Sign Up!</p>
+                    <h1 className="signup-title">Create your Hike account</h1>
                     <form className="signup-form" onSubmit={this.signUp}>
                         <input 
                             value={this.state.username} 
@@ -55,6 +55,7 @@ export default class SignUp extends Component {
                             onChange={this.updateInput}
                         />
                         <button type="submit">Sign Up</button>
+                        <p className="account-question">Already have an account? <a href="./Login">Click here to log in</a></p>
                     </form>
                 </div>
             </div>

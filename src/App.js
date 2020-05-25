@@ -44,7 +44,7 @@ export default class App extends Component {
             <Route 
               path='/dashboard'
               render={(props) =>
-                <Dashboard/>
+                <Dashboard {...props}/>
               }
             />
           </Switch>

@@ -9,6 +9,11 @@ export default class Dashboard extends Component {
         activeMountain: null,
     }
 
+    handleLogout = (props) => {
+        localStorage.clear()
+        this.props.history.push("Login")
+    }
+
     componentDidMount() {
         fetch('http://localhost:4000/mountain')
             .then(response => response.json())
@@ -21,6 +26,7 @@ export default class Dashboard extends Component {
                 <Modal mountains={this.state.mountains}/>
                 <div>
                 <Map id="dashboard-map" center={[39, -106]} zoom={8}>
+                <button onClick={this.handleLogout} className="logout-button">LOG OUT</button>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

@@ -25,13 +25,18 @@ export default class Modal extends Component {
         const user_id = localStorage.getItem("user_id")
         const mountain_id_int = parseInt(mountain_id)
         console.log(user_id)
+        console.log(mountain_id_int)
         
         fetch("http://localhost:4000/hike", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers : { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+               },
             body: JSON.stringify({title, image, description, mountain_id: mountain_id_int, user_id})
         })
         .then(response => response.json())
+        .catch(error => console.log(error))
     }
 
     updateInput = event => {
