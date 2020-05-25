@@ -12,7 +12,6 @@
   height: 100%;
 }
 
-
 .title-container {
   position: absolute;
   z-index: 1;
@@ -42,33 +41,7 @@
   text-shadow: 1px 1px 1px #222121;
 }
 
-/* navigation */
-
-.nav-bar {
-  background-color: rgb(189, 195, 199);
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  /* opacity: 0.5;
-  filter: alpha(opacity=50); */
-}
-
-.link {
-  text-decoration: none;
-  color: white;
-  padding: 7px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 20px;
-}
-
-.link:hover {
-  color: darkslategrey;
-  text-decoration: none;
-}
-
-/* login page */
+/* login & signup page */
 
 .login-container, .signup-container {
   background-image: url(./drawing.jpg);
@@ -80,7 +53,7 @@
   justify-content: center;
 }
 
-.signup-form {
+.signup-form, .login-form {
   display: flex;
   flex-direction: column;
   align-items: center;  
@@ -93,7 +66,7 @@
   display: flex;
   flex-direction: column;  
   align-items: center;  
-  border-radius: 10px;
+  border-radius: 15px;
   border: darkgray 1px solid;
   box-shadow: darkgray 2px 2px 2px;
 }
@@ -236,14 +209,3 @@
   height: 25px;
 }
 
-/* add hike */
-
-.add-hike-container {
-  background-image: url(./drawing.jpg);
-  background-size: cover;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;  
-  align-items: center;  
-  justify-content: center;
-}

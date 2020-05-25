@@ -9,7 +9,7 @@ export default class Modal extends Component {
 
     state = {
         open: false,
-        mountain_id: '',
+        mountain_id: null,
         title: '',
         image: '',
         description: ''
@@ -35,8 +35,9 @@ export default class Modal extends Component {
                },
             body: JSON.stringify({title, image, description, mountain_id: mountain_id_int, user_id})
         })
-        .then(response => response.json())
-        .catch(error => console.log(error))
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
     }
 
     updateInput = event => {
