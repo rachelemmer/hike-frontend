@@ -37,24 +37,27 @@ export default class SignUp extends Component {
     render() {
         return (
             <div className="signup-container">
-                <p className="signup-question">Not a user? Sign Up!</p>
-                <form className="signup-form" onSubmit={this.signUp}>
-                    <input 
-                        value={this.state.username} 
-                        name="username" 
-                        type="text" 
-                        placeholder="username"
-                        onChange={this.updateInput}
-                    />
-                    <input 
-                        value={this.state.password} 
-                        name="password" 
-                        type="password" 
-                        placeholder="password"
-                        onChange={this.updateInput}
-                    />
-                    <button type="submit">Sign Up</button>
-                </form>
+                <div className="signup-form-container">
+                    <h1 className="signup-title">Create your Hike account</h1>
+                    <form className="signup-form" onSubmit={this.signUp}>
+                        <input 
+                            value={this.state.username} 
+                            name="username" 
+                            type="text" 
+                            placeholder="username"
+                            onChange={this.updateInput}
+                        />
+                        <input 
+                            value={this.state.password} 
+                            name="password" 
+                            type="password" 
+                            placeholder="password"
+                            onChange={this.updateInput}
+                        />
+                        <button type="submit">Sign Up</button>
+                        <p className="account-question">Already have an account? <a href="./Login">Click here to log in</a></p>
+                    </form>
+                </div>
             </div>
         )
     }

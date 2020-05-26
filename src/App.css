@@ -1,3 +1,5 @@
+/* home page */
+
 .video-container {
   height: 100vh;
   overflow: hidden;
@@ -10,7 +12,6 @@
   height: 100%;
 }
 
-
 .title-container {
   position: absolute;
   z-index: 1;
@@ -20,13 +21,203 @@
   display:flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  align-content: space-around;
 }
 
 .title {
-  font-size: 120px;
+  font-size: 250px;
+  padding: 10px;
+  border: none;
+  margin: 0px;
+  color: #222121;
+  animation: fade 5s;
 }
 
-.leaflet-container {
-  width: 100%;
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.click-to-start {
+  font-size: 30px;
+  text-decoration: none;
+  margin: 0px;
+  color: white;
+  text-shadow: 1px 1px 1px #222121;
+  animation: fade 8s;
+}
+
+/* login & signup page */
+
+.login-container, .signup-container {
+  background-image: url(./drawing.jpg);
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;  
+  align-items: center;  
+  justify-content: center;
+}
+
+.signup-form, .login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  justify-content: center;
+}
+
+.login-form-container, .signup-form-container {
+  background-color: rgba(255, 255, 255, 0.844);
+  padding: 50px 50px 50px;
+  display: flex;
+  flex-direction: column;  
+  align-items: center;  
+  border-radius: 15px;
+  border: darkgray 1px solid;
+  box-shadow: darkgray 2px 2px 2px;
+}
+
+.login-form input, .signup-form input {
+  height: 30px;
+  width: 300px;
+  padding: 5px;
+  border: 1px solid darkgray;
+  border-radius: 15px; 
+  outline: none;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+  margin: 10px;
+}
+
+.login-form button, .signup-form button {
+  height: 40px;
+  width: 100px;
+  padding: 10px;
+  margin-left: 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 15px; 
+  outline: none;
+  text-align: center;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  background-color: #333333;
+  color: white;
+}
+
+.signup-title, .login-title {
+  font-size: 32px;
+  font-family: 'Montserrat', sans-serif;
+  color: #333333;
+  margin-bottom: 40px;
+}
+
+.account-question {
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+  color: #333333;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.account-question a {
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  color: #333333;
+  text-align: center;
+  margin-top: 50px;
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+/* dashboard */
+
+.modal {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 180px;
+}
+
+.dashboard-page {
   height: 100vh;
 }
+
+#dashboard-map {
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+  position: unset;
+}
+
+.add-hike-button {
+  z-index: 1000;
+  position: absolute;
+  padding: 15px;
+  width: 200px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 20px;
+  background-color: rgb(180, 222, 174);
+  font-family: 'Montserrat', sans-serif;
+  color: darkslategrey;
+  border-radius: 5px;
+  border: solid 1px darkslategrey;
+}
+
+.logout-button {
+  z-index: 1000;
+  position: absolute;
+  margin-left: 1540px;
+  width: 150px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: darkslategrey;
+  border-radius: 5px;
+  padding: 15px;
+  color: rgb(180, 222, 174);
+  border: solid 1px rgb(180, 222, 174);
+}
+
+.add-hike-form {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  width: 400px;
+  padding: 15px;
+}
+
+#form-dialog-title {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 40px;
+  color: darkslategray;
+}
+
+.title-input {
+  margin: 10px;
+  height: 25px;
+  font-size: 16px;
+}
+
+.image-input {
+  margin: 10px;
+  height: 25px;
+  font-size: 16px;
+}
+
+.description-input {
+  height: 250px;
+  margin: 10px;
+  font-size: 16px;
+}
+
+.select-box {
+  margin: 10px;
+  height: 25px;
+  font-size: 18px;
+}
+
