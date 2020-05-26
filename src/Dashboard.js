@@ -7,6 +7,8 @@ export default class Dashboard extends Component {
     state = {
         mountains: [],
         activeMountain: null,
+        hikes: [],
+        activeHike: null
     }
 
     handleLogout = (props) => {
@@ -14,10 +16,27 @@ export default class Dashboard extends Component {
         this.props.history.push("Login")
     }
 
-    componentDidMount() {
+    getMountains = () => {
         fetch('http://localhost:4000/mountain')
             .then(response => response.json())
             .then(result => this.setState({mountains: result.mountains}))
+    }
+
+    getHikes = () => {
+        fetch("http://localhost:4000/hike", {
+            method: "GET",
+            headers: { 
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+            }
+        }).then(response => response.json())
+            .then(result => this.setState({hikes: result.hikes}))
+            .catch(error => console.error(error))
+    }
+
+    componentDidMount() {
+        this.getMountains()
+        this.getHikes()
     }
 
     render() {
@@ -35,6 +54,13 @@ export default class Dashboard extends Component {
                     return <Marker key={mountain.id} name={mountain.name} position={[mountain.latitude, mountain.longitude]}
                         onClick={() => this.setState({activeMountain: mountain})}
                     />
+                })}
+                  {this.state.hikes.map(hike => {
+                      console.log(hike)
+                    // return <Marker key={hike.id} name={hike.title} position={[hike.mountain_id.latitude, hike.mountain_id.longitude]}
+                    //     onClick={() => this.setState({activeHike: hike})}
+
+                    // />
                 })}
                 {this.state.activeMountain && (
                 <Popup 

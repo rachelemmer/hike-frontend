@@ -55,8 +55,7 @@ export default class Modal extends Component {
                     ADD NEW HIKE
                 </button>
                 <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Add your hike!</DialogTitle>
-                    <DialogContent>
+                    <h2 id="form-dialog-title">Add your hike!</h2>
                         <form className="add-hike-form">
                             <select name="mountain_id" onChange={this.updateInput} className="select-box">
                             <option className="option" disabled selected hidden>Select Fourteener</option>
@@ -80,7 +79,7 @@ export default class Modal extends Component {
                                 placeholder="Image URL"
                                 onChange={this.updateInput}
                             />
-                            <input 
+                            <textarea
                                 className="description-input"
                                 value={this.state.description} 
                                 name="description" 
@@ -89,9 +88,8 @@ export default class Modal extends Component {
                                 onChange={this.updateInput}
                             />
                         </form>
-                    </DialogContent>
                     <DialogActions>
-                    <Button onClick={this.handleClose} color="primary">
+                    <Button className="submit-hike-button" onClick={this.handleClose} color="darkslategray" size="large">
                         Add Hike
                     </Button>
                     </DialogActions>

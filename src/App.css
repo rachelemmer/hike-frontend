@@ -31,6 +31,12 @@
   border: none;
   margin: 0px;
   color: #222121;
+  animation: fade 5s;
+}
+
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
 
 .click-to-start {
@@ -39,6 +45,7 @@
   margin: 0px;
   color: white;
   text-shadow: 1px 1px 1px #222121;
+  animation: fade 8s;
 }
 
 /* login & signup page */
@@ -179,33 +186,39 @@
 .add-hike-form {
   display: flex;
   flex-direction: column;
-  height: 300px;
-  width: 250px;
+  height: 400px;
+  width: 400px;
+  padding: 15px;
 }
 
 #form-dialog-title {
   text-align: center;
-  margin-top: 10px;
-  font-size: 50px;
+  margin-top: 25px;
+  font-size: 40px;
+  color: darkslategray;
 }
 
 .title-input {
   margin: 10px;
   height: 25px;
+  font-size: 16px;
 }
 
 .image-input {
   margin: 10px;
   height: 25px;
+  font-size: 16px;
 }
 
 .description-input {
-  height: 150px;
-  margin: 10px
+  height: 250px;
+  margin: 10px;
+  font-size: 16px;
 }
 
 .select-box {
   margin: 10px;
   height: 25px;
+  font-size: 18px;
 }
 
