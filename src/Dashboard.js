@@ -55,13 +55,11 @@ export default class Dashboard extends Component {
                         onClick={() => this.setState({activeMountain: mountain})}
                     />
                 })}
-                  {this.state.hikes.map(hike => {
-                      console.log(hike)
-                    // return <Marker key={hike.id} name={hike.title} position={[hike.mountain_id.latitude, hike.mountain_id.longitude]}
-                    //     onClick={() => this.setState({activeHike: hike})}
-
-                    // />
-                })}
+                  {/* {this.state.hikes.map(hike => {
+                    <Marker key={hike.id} name={hike.title} position={[hike.mountains.latitude, hike.mountains.longitude]}
+                        onClick={() => this.setState({activeHike: hike})}
+                    />
+                })} */}
                 {this.state.activeMountain && (
                 <Popup 
                     position={[this.state.activeMountain.latitude, this.state.activeMountain.longitude]} 
