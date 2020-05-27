@@ -8,7 +8,8 @@ export default class Dashboard extends Component {
         mountains: [],
         activeMountain: null,
         hikes: [],
-        activeHike: null
+        activeHike: null,
+        hasHiked: []
     }
 
     handleLogout = (props) => {
@@ -31,6 +32,11 @@ export default class Dashboard extends Component {
             }
         }).then(response => response.json())
             .then(result => this.setState({hikes: result.hikes}))
+            .then(result =>
+                result.hikes.forEach(hike => {
+                    this.setState({hasHiked: [...this.state.hasHiked, hike.id]})
+            })
+            )
             .catch(error => console.error(error))
     }
 
@@ -39,7 +45,9 @@ export default class Dashboard extends Component {
         this.getHikes()
     }
 
+
     render() {
+        console.log("state has hiked", this.state.hasHiked)
         return (
             <div className="dashboard-page">
                 <Modal mountains={this.state.mountains}/>
@@ -50,16 +58,19 @@ export default class Dashboard extends Component {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     />
-                {this.state.mountains.map(mountain => {
-                    return <Marker key={mountain.id} name={mountain.name} position={[mountain.latitude, mountain.longitude]}
-                        onClick={() => this.setState({activeMountain: mountain})}
-                    />
-                })}
-                  {/* {this.state.hikes.map(hike => {
-                    <Marker key={hike.id} name={hike.title} position={[hike.mountains.latitude, hike.mountains.longitude]}
-                        onClick={() => this.setState({activeHike: hike})}
-                    />
-                })} */}
+                {this.state.mountains.map((mountain, i) => {
+            let icon;
+            if (this.state.hasHiked.includes(i)) {
+                console.log("yes", i)
+                // icon = greenIcon
+            } else {
+                console.log("not yet hiked")
+                // icon = redIcon
+            }
+            return <Marker key={mountain.id} name={mountain.name} position={[mountain.latitude, mountain.longitude]}
+                onClick={() => this.setState({activeMountain: mountain})}
+            />
+        })}
                 {this.state.activeMountain && (
                 <Popup 
                     position={[this.state.activeMountain.latitude, this.state.activeMountain.longitude]} 
