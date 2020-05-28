@@ -79,6 +79,7 @@ export default class Dashboard extends Component {
                         >
                         <div>
                             <h1>{this.state.activeHike.title}</h1>
+                            <img className="popup-pic" src={this.state.activeHike.image} alt={this.state.activeHike.title}/>
                             <h3>{this.state.activeHike.mountains.name}</h3>
                             <p>{this.state.activeHike.description}</p>
                         </div>

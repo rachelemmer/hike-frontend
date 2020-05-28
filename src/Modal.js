@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Upload from "./Upload"
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -46,31 +47,31 @@ export default class Modal extends Component {
                 </button>
                 <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                     <h2 id="form-dialog-title">Add your hike!</h2>
-                        <form className="add-hike-form">
-                            <select name="mountain_id" onChange={this.updateInput} className="select-box">
-                            <option className="option" disabled selected hidden>Select Fourteener</option>
-                            {this.props.mountains.map(mountain => {
-                                return <option className="option" key={mountain.id} value={mountain.id}>{mountain.name}</option>
-                            })}
-                            </select>
-                            <input 
-                                className="title-input"
-                                value={this.state.title} 
-                                name="title"
-                                type="text" 
-                                placeholder="Title" 
-                                onChange={this.updateInput}
-                            />
-                            <Upload addImage={this.addImage} />
-                            <textarea
-                                className="description-input"
-                                value={this.state.description} 
-                                name="description" 
-                                type="text" 
-                                placeholder="Description"
-                                onChange={this.updateInput}
-                            />
-                        </form>
+                    <form className="add-hike-form">
+                        <select name="mountain_id" onChange={this.updateInput} className="select-box">
+                        <option className="option" disabled selected hidden>Select Fourteener</option>
+                        {this.props.mountains.map(mountain => {
+                            return <option className="option" key={mountain.id} value={mountain.id}>{mountain.name}</option>
+                        })}
+                        </select>
+                        <input 
+                            className="title-input"
+                            value={this.state.title} 
+                            name="title"
+                            type="text" 
+                            placeholder="Title" 
+                            onChange={this.updateInput}
+                        />
+                        <Upload addImage={this.addImage} />
+                        <textarea
+                            className="description-input"
+                            value={this.state.description} 
+                            name="description" 
+                            type="text" 
+                            placeholder="Description"
+                            onChange={this.updateInput}
+                        />
+                    </form>
                     <DialogActions>
                     <Button className="submit-hike-button" onClick={this.handleClose} color="darkslategray" size="large">
                         Add Hike
