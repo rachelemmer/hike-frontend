@@ -39,5 +39,5 @@ On the Backend this application uses Node(13.9.0), Express(4.17.1), Knex(0.21.1)
 
 This application allows users to create an account and upload information about their experience on one of these mountains. They can keep track of the hikes they have done and can view details about that day to serve as memories for themselves, or share with others their experiences. 
 
-#### The backend of this repository can be found here: https://github.com/rachelemmer/backend-capstone
+#### The backend of this repository can be found here: https://github.com/rachelemmer/hike-backend
 
