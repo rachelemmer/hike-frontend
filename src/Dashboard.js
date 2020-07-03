@@ -12,7 +12,6 @@ export default class Dashboard extends Component {
     }
 
     postHike = (hikeData) => {
-        console.log(hikeData)
         fetch("http://localhost:4000/hike", {
             method: "POST",
             headers : { 
@@ -24,7 +23,6 @@ export default class Dashboard extends Component {
         .then(response => response.json())
         .then(hike => this.setState({hikes: [...this.state.hikes, hike]}))
         .catch(error => console.log('error', error));
-        this.getHikes()
     }
 
     handleLogout = (props) => {
@@ -50,6 +48,12 @@ export default class Dashboard extends Component {
             .catch(error => console.error(error))
     }
 
+    deletePost = (activeHike) => {
+        fetch(`http://localhost:4000/hike/${activeHike.id}`, {
+            method: 'DELETE'
+        }).then(console.log(activeHike.id))
+    }
+
     componentDidMount() {
         this.getMountains()
         this.getHikes()
@@ -67,9 +71,13 @@ export default class Dashboard extends Component {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     />
                 {this.state.hikes.map(hike => {
+                    try {
                     return <Marker key={hike.id} position={[hike.mountains.latitude, hike.mountains.longitude]}
                         onClick={() => this.setState({activeHike: hike})}
-                    />
+                    />}
+                    catch(error) {
+                        console.error(error)
+                    }
                 })}
                  
                 {this.state.activeHike && (
@@ -81,7 +89,8 @@ export default class Dashboard extends Component {
                             <h1>{this.state.activeHike.title}</h1>
                             <img className="popup-pic" src={this.state.activeHike.image} alt={this.state.activeHike.title}/>
                             <h3>{this.state.activeHike.mountains.name}</h3>
-                            <p>{this.state.activeHike.description}</p>
+                            <p className="display-description">{this.state.activeHike.description}</p>
+                            <button onClick={() => {this.deletePost(this.state.activeHike)}}>Delete Post</button>
                         </div>
                     </Popup>
                     )}

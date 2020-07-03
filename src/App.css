@@ -222,8 +222,8 @@
 }
 
 .popup-pic {
-  height: 25px;
-  width: 25px;
+  height: auto;
+  width: 200px;
 }
 
 input[type="file"]::-webkit-file-upload-button {
@@ -244,6 +244,9 @@ input[type="file"]::-webkit-file-upload-button {
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
-  margin: 10px;
+  margin: 10px 10px 10px 163px;
 }
 
+.display-description {
+  font-size: 16px;
+}
