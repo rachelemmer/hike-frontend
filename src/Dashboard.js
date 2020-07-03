@@ -22,6 +22,7 @@ export default class Dashboard extends Component {
         })
         .then(response => response.json())
         .then(hike => this.setState({hikes: [...this.state.hikes, hike]}))
+        .then(window.location.reload())
         .catch(error => console.log('error', error));
     }
 
@@ -51,7 +52,7 @@ export default class Dashboard extends Component {
     deletePost = (activeHike) => {
         fetch(`http://localhost:4000/hike/${activeHike.id}`, {
             method: 'DELETE'
-        }).then(console.log(activeHike.id))
+        }).then(window.location.reload())
     }
 
     componentDidMount() {
