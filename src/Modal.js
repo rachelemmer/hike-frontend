@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Upload from "./Upload"
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -18,25 +19,12 @@ export default class Modal extends Component {
         this.setState({open: true})
       };
     
-    handleClose = () => {
+    handleClose = (props) => {
         this.setState({open: false})
         const {title, image, description, mountain_id} = this.state
         const user_id = localStorage.getItem("user_id")
         const mountain_id_int = parseInt(mountain_id)
-        console.log(user_id)
-        console.log(mountain_id_int)
-        
-        fetch("http://localhost:4000/hike", {
-            method: "POST",
-            headers : { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-               },
-            body: JSON.stringify({title, image, description, mountain_id: mountain_id_int, user_id})
-        })
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+        this.props.postHike({title, image, description, user_id, mountain_id: mountain_id_int})
     }
 
     updateInput = event => {
@@ -45,7 +33,11 @@ export default class Modal extends Component {
             [name]: value
         })
     }
-    
+
+    addImage = (url) => {
+        console.log(url)
+        this.setState({image: url})
+    }
 
     render() {
         return (
@@ -55,38 +47,31 @@ export default class Modal extends Component {
                 </button>
                 <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                     <h2 id="form-dialog-title">Add your hike!</h2>
-                        <form className="add-hike-form">
-                            <select name="mountain_id" onChange={this.updateInput} className="select-box">
-                            <option className="option" disabled selected hidden>Select Fourteener</option>
-                            {this.props.mountains.map(mountain => {
-                                return <option className="option" key={mountain.id} value={mountain.id}>{mountain.name}</option>
-                            })}
-                            </select>
-                            <input 
-                                className="title-input"
-                                value={this.state.title} 
-                                name="title"
-                                type="text" 
-                                placeholder="Title" 
-                                onChange={this.updateInput}
-                            />
-                            <input 
-                                className="image-input"
-                                value={this.state.image} 
-                                name="image" 
-                                type="text" 
-                                placeholder="Image URL"
-                                onChange={this.updateInput}
-                            />
-                            <textarea
-                                className="description-input"
-                                value={this.state.description} 
-                                name="description" 
-                                type="text" 
-                                placeholder="Description"
-                                onChange={this.updateInput}
-                            />
-                        </form>
+                    <form className="add-hike-form">
+                        <select name="mountain_id" onChange={this.updateInput} className="select-box">
+                        <option className="option" disabled selected hidden>Select Fourteener</option>
+                        {this.props.mountains.map(mountain => {
+                            return <option className="option" key={mountain.id} value={mountain.id}>{mountain.name}</option>
+                        })}
+                        </select>
+                        <input 
+                            className="title-input"
+                            value={this.state.title} 
+                            name="title"
+                            type="text" 
+                            placeholder="Title" 
+                            onChange={this.updateInput}
+                        />
+                        <Upload addImage={this.addImage} />
+                        <textarea
+                            className="description-input"
+                            value={this.state.description} 
+                            name="description" 
+                            type="text" 
+                            placeholder="Description"
+                            onChange={this.updateInput}
+                        />
+                    </form>
                     <DialogActions>
                     <Button className="submit-hike-button" onClick={this.handleClose} color="darkslategray" size="large">
                         Add Hike

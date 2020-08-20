@@ -11,6 +11,21 @@ export default class Dashboard extends Component {
         activeHike: null
     }
 
+    postHike = (hikeData) => {
+        fetch("http://localhost:4000/hike", {
+            method: "POST",
+            headers : { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+               },
+            body: JSON.stringify(hikeData)
+        })
+        .then(response => response.json())
+        .then(hike => this.setState({hikes: [...this.state.hikes, hike]}))
+        .then(window.location.reload())
+        .catch(error => console.log('error', error));
+    }
+
     handleLogout = (props) => {
         localStorage.clear()
         this.props.history.push("Login")
@@ -34,6 +49,12 @@ export default class Dashboard extends Component {
             .catch(error => console.error(error))
     }
 
+    deletePost = (activeHike) => {
+        fetch(`http://localhost:4000/hike/${activeHike.id}`, {
+            method: 'DELETE'
+        }).then(window.location.reload())
+    }
+
     componentDidMount() {
         this.getMountains()
         this.getHikes()
@@ -42,7 +63,7 @@ export default class Dashboard extends Component {
     render() {
         return (
             <div className="dashboard-page">
-                <Modal mountains={this.state.mountains}/>
+                <Modal postHike={this.postHike} mountains={this.state.mountains}/>
                 <div>
                 <Map id="dashboard-map" center={[39, -106]} zoom={8}>
                 <button onClick={this.handleLogout} className="logout-button">LOG OUT</button>
@@ -50,23 +71,27 @@ export default class Dashboard extends Component {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     />
-                {this.state.mountains.map(mountain => {
-                    return <Marker key={mountain.id} name={mountain.name} position={[mountain.latitude, mountain.longitude]}
-                        onClick={() => this.setState({activeMountain: mountain})}
-                    />
-                })}
-                  {/* {this.state.hikes.map(hike => {
-                    <Marker key={hike.id} name={hike.title} position={[hike.mountains.latitude, hike.mountains.longitude]}
+                {this.state.hikes.map(hike => {
+                    try {
+                    return <Marker key={hike.id} position={[hike.mountains.latitude, hike.mountains.longitude]}
                         onClick={() => this.setState({activeHike: hike})}
-                    />
-                })} */}
-                {this.state.activeMountain && (
+                    />}
+                    catch(error) {
+                        console.error(error)
+                    }
+                })}
+                 
+                {this.state.activeHike && (
                 <Popup 
-                    position={[this.state.activeMountain.latitude, this.state.activeMountain.longitude]} 
-                    onClose={() => this.setState({activeMountain: null}) }
+                    position={[this.state.activeHike.mountains.latitude, this.state.activeHike.mountains.longitude]} 
+                    onClose={() => this.setState({activeHike: null}) }
                         >
                         <div>
-                            <h2>{this.state.activeMountain.name}</h2>
+                            <h1>{this.state.activeHike.title}</h1>
+                            <img className="popup-pic" src={this.state.activeHike.image} alt={this.state.activeHike.title}/>
+                            <h3>{this.state.activeHike.mountains.name}</h3>
+                            <p className="display-description">{this.state.activeHike.description}</p>
+                            <button onClick={() => {this.deletePost(this.state.activeHike)}}>Delete Post</button>
                         </div>
                     </Popup>
                     )}
