@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import Upload from "./Upload"
 import Dialog from '@material-ui/core/Dialog';
-import Button from '@material-ui/core/Button';
-import DialogActions from '@material-ui/core/DialogActions';
 
 
 export default class Modal extends Component {
@@ -72,11 +70,9 @@ export default class Modal extends Component {
                             onChange={this.updateInput}
                         />
                     </form>
-                    <DialogActions>
-                    <Button className="submit-hike-button" onClick={this.handleClose} color="darkslategray" size="large">
+                    <button className="submit-hike-button" onClick={this.handleClose} color="darkslategray" size="large">
                         Add Hike
-                    </Button>
-                    </DialogActions>
+                    </button>
                 </Dialog>
             </div>
         )
